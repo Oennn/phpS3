@@ -150,8 +150,8 @@ switch($action)
 
         $zonePrincipale .= "<h2>Liste des personnes</h2>";
         $zonePrincipale .= "<p>Mode courant : <b>" . ($mode === 'p' ? 'requêtes préparées' : 'requêtes non préparées') . "</b></p>";
-        $zonePrincipale .= formRecherche($mode, '');
-        $zonePrincipale .= "<p>affichage des lignes <strong>1</strong> à <strong>" . $total ."</strong></p>";
+
+        $zonePrincipale .= "<p>affichage des lignes <strong>1</strong> à <strong>" . $total ."</strong> sur <strong> $total</strong></p>";
         $zonePrincipale .= "<p><a href='index.php?action=saisir&mode={$mode}'>➕ Ajouter une personne</a></p>";
         // Formulaire de recherche par ID
         $searchId = (int)($_GET['searchId'] ?? 0);
