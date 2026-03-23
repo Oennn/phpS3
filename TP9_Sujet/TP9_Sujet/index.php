@@ -182,3 +182,10 @@ switch($action)
 
 
 require('squelette.php');
+
+/*
+ * COMPARAISON : MODE PRÉPARÉ ET MODE NON PRÉPARÉ
+ * Mode préparé : plus sûr et performant
+ * Mode non préparé : plus simple mais risqué avec des données externes, si des hackers veulent injecter du code malveillant
+ *  le mieux est d'utiliser toujours les requêtes préparées site avec utilisateurs
+ */
