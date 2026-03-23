@@ -163,7 +163,7 @@ switch($action)
         $zonePrincipale .= "<button type='submit'>Chercher</button>";
         $zonePrincipale .= "</form>";
 
-        // GITHUB COPILOT : Affichage du détail si un ID est fourni
+        //Affichage du détail si un ID est fourni
         if ($searchId > 0) {
             $p = Personne::findById($pdo, $searchId, $mode);
             if ($p) {
@@ -173,7 +173,7 @@ switch($action)
             }
         }
         
-        // GITHUB COPILOT : Affichage de la liste complète
+        //Afficher la liste complète
         $personnes = Personne::findAll($pdo, $mode);
         $zonePrincipale .= tablePersonnes($personnes, $mode);
         break;
