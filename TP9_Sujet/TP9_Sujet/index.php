@@ -46,7 +46,9 @@ switch($action)
         // valider
         // insérer en base
 
-        list($val, $err) = validerPersonne($_POST);
+        $res= validerPersonne($_POST);
+        $val=$res[0];
+        $err=$res[1];
 
         
         if (empty($err['nom']) && empty($err['prenom']) && empty($err['dateN'])) {
@@ -154,24 +156,32 @@ switch($action)
         $zonePrincipale .= "<p>affichage des lignes <strong>1</strong> à <strong>" . $total ."</strong> sur <strong> $total</strong></p>";
         $zonePrincipale .= "<p><a href='index.php?action=saisir&mode={$mode}'>➕ Ajouter une personne</a></p>";
         // Formulaire de recherche par ID
-        $searchId = (int)($_GET['searchId'] ?? 0);
+        $searchIdRaw = $_GET['searchId'] ?? null;
+        $searchId = is_numeric($searchIdRaw) ? (int)$searchIdRaw : null;
         $zonePrincipale .= "<form action='index.php' method='get'>"; // envoie dans l url les value
         $zonePrincipale .= "<input type='hidden' name='action' value='afficher'>";
         $zonePrincipale .= "<input type='hidden' name='mode' value='{$mode}'>";
         $zonePrincipale .= "<label for='searchId'><b>Afficher détail personne :</b></label>";
-        $zonePrincipale .= "<input type='text' id='searchId' name='searchId' placeholder='IDd' value='{$searchId}'>"; // value permet que le champ reste préremplis
+        $zonePrincipale .= "<input type='text' id='searchId' name='searchId' placeholder='ID' value='{$searchId}'>"; // value permet que le champ reste préremplis
         $zonePrincipale .= "<button type='submit'>Chercher</button>";
         $zonePrincipale .= "</form>";
 
         //Affichage du détail si un ID est fourni
-        if ($searchId > 0) {
-            $p = Personne::findById($pdo, $searchId, $mode);
-            if ($p) {
-                $zonePrincipale .= afficherPersonneDetail($p);
+        if ($searchId !== null) {
+            if ($searchId > 0) {
+                $p = Personne::findById($pdo, $searchId, $mode);
+                if ($p) {
+                    $zonePrincipale .= afficherPersonneDetail($p);
+                } else {
+                    $zonePrincipale .= "<p style='color:red;'>Personne non trouvée.</p>";
+                }
             } else {
-                $zonePrincipale .= "<p style='color:red;'>Personne non trouvée.</p>";
+                $zonePrincipale .= "<p style='color:red;'>id impossible.</p>";
             }
         }
+
+        $zonePrincipale.="<hr>";
+
         
         //Afficher la liste complète
         $personnes = Personne::findAll($pdo, $mode);

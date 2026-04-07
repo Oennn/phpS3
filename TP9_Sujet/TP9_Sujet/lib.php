@@ -64,17 +64,17 @@ function validerPersonne(array $post): array
     } else {
         // Vérifier le format AAAA-MM-JJ avec regex
         if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $val['dateN'])) {
-            $err['dateN'] = 'Format invalide (aaaa-mm-jj)'; 
+            $err['dateN'] = 'Format invalide (aaaa-mm-jj)';
         } else {
             $valeur = explode('-', $val['dateN']);
-            
+
             if (count($valeur) !== 3) {
                 $err['dateN'] = 'Veuillez saisir une date valide';
             } else {
                 $annee = (int)$valeur[0];
                 $mois = (int)$valeur[1];
                 $jour = (int)$valeur[2];
-                
+
                 if(!is_numeric($mois) || !is_numeric($jour) || !is_numeric($annee)){
                     $err['dateN'] = 'Veuillez saisir une date valide';
                 } elseif (!checkDate($mois, $jour, $annee)) {

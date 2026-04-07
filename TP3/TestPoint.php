@@ -2,7 +2,7 @@
         require_once 'Point.php';
 
         // Créez une instance de la classe Point
-        $pointA = new Point(10, 10, 'rouge');
+        $pointA = new Point(10, 10);
 
         // Affichez les coordonnées du point
         echo "Coordonnées du point A : $pointA \n";

@@ -12,21 +12,22 @@ if (empty($ville) || $langue===[] || empty($couleur) || is_numeric($nom)) {
 }
 
 if (empty($nom) ) {
-    $nom="Dupond";
+    $nom="Dupont";
 }
 
 $couleurs = ["rouge"=>"red", "vert"=>"green", "bleu"=>"blue"];
 $couleur = $couleurs[$couleur];
 
+$nom_safe = htmlspecialchars($nom, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 
 for($i =0; $i < count($langue); $i++){
     if($langue[$i]==="fr"){
-        $langue[$i]="Bonjour $nom !";
+        $langue[$i]="Bonjour $nom_safe !";
     }
     else if($langue[$i]==="en"){
-        $langue[$i]="Hello $nom !";
+        $langue[$i]="Hello $nom_safe !";
     }else{
-        $langue[$i]="Guten Tag $nom !";
+        $langue[$i]="Guten Tag $nom_safe !";
     }
 }
 

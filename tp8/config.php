@@ -1,5 +1,4 @@
 <?php
-/*
 declare(strict_types=1);
 define('DB_SERVER', 'mysql.info.unicaen.fr');
 define('DB_PORT', '3306');
@@ -11,10 +10,4 @@ define('DB_DSN',
     ";port=" . DB_PORT .
     ";dbname=" . DB_NAME .
     ";charset=utf8mb4"
-
 );
-http://localhost/phpS3/tp8/CRUD_F1/Partie_I/personnes.php
-*/
-define('DB_DSN', 'mysql:host=localhost;port=3306;dbname=tp9_bd;charset=utf8mb4');
-define('DB_USER', 'root');
-define('DB_PASS', '');

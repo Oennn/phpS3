@@ -38,7 +38,7 @@ function minimumAvecClef(array $tableau, bool $return_key = false): array{
             break;
             
         }
-    }
+    } // conserve les valeurs de la dernière itération
     if($return_key){
         return ['key'=>$pays,'value' => $value];
     }

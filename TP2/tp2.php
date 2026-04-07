@@ -66,10 +66,12 @@ echo"\nIngredients les moins chères = ".moinscher($dicoprix)[0]."\n";
 function dollars(array &$dico): void{
     $taux= 1.12;
     foreach($dico as $x=>$y){
-        $dico[$x]=$y*$taux;
+        $dico[$x]=$y*$taux; //plus simple grace a &$dico, $y= $y*$taux
     }
 }
 
+//array $dico  : Passe une COPIE du tableau à la fonction
+//array &$dico : Passe une RÉFÉRENCE au tableau original
 $dicoDollars=$dicoprix;
 echo"\nprix de euro à dollars : ";
 dollars($dicoDollars);
